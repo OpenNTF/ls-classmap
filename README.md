@@ -27,16 +27,14 @@ Based on the original *Domino Objects for LotusScript/COM/OLE* poster published 
 ```
 ├── index.html                        # Main application
 ├── openntf_iconlogo_trans_200.png    # OpenNTF logo
+├── world-connected.png
+├── world-light.jpg
 ├── css/
 │   └── style.css                     # All styles including retro theme
 ├── js/
 │   └── engine.js                     # JointJS map engine
 ├── data/
 │   └── ls_classes.json               # Class reference data (97 classes)
-├── tools/                            # Maintenance tools (not part of the app)
-│   ├── README.md                     # Scrape and merge workflow
-│   ├── scraper.py                    # HCL docs scraper
-│   └── merge.py                      # Merge scraped data into master JSON
 ├── LICENSE
 └── README.md
 ```
