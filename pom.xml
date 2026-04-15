@@ -15,13 +15,13 @@
 		<osgi.qualifier>${maven.build.timestamp}</osgi.qualifier>
 	</properties>
 
-	<repositories>
-		<repository>
+	<pluginRepositories>
+		<pluginRepository>
 			<id>artifactory.openntf.org</id>
 			<name>artifactory.openntf.org</name>
 			<url>https://artifactory.openntf.org/openntf</url>
-		</repository>
-	</repositories>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<build>
 		<plugins>
