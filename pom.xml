@@ -5,7 +5,7 @@
 	<groupId>org.openntf.lotusscript</groupId>
 	<artifactId>ls-classmap</artifactId>
 	<version>0.9.0-SNAPSHOT</version>
-	<name>LotusScript Classmap</name>
+	<name>LotusScript Class Map</name>
 	<packaging>bundle</packaging>
 
 	<properties>
