@@ -29,3 +29,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package
+    - name: Upload Repository
+      uses: actions/upload-artifact@v7
+      with:
+        name: Repository
+        path: target/*.zip
+        if-no-files-found: error
+        archive: false
