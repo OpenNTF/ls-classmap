@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>LotusScript Class Map v0.9 — HCL Domino 14.5.1 — OpenNTF</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.7.7/joint.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar">
+
+        <div id="sidebar-logo">
+            <img src="openntf_iconlogo_trans_200.png" alt="OpenNTF" />
+        </div>
+
+        <h3>LotusScript Class Map 14.5.1</h3>
+
+        <div id="search-wrap">
+            <input type="text" id="class-search" placeholder="Search...">
+            <button id="search-clear" title="Clear search" aria-label="Clear search">&#x2715;</button>
+        </div>
+        <div id="search-scope">
+            <button class="scope-btn active" data-scope="classes" title="Search class names">Classes</button>
+            <button class="scope-btn" data-scope="members" title="Search method and property names">Members</button>
+            <button class="scope-btn" data-scope="all" title="Search everything">All</button>
+        </div>
+
+        <div id="control-strip">
+
+            <button id="btn-home"         title="Fit all classes in view">⌂ Home</button>
+            <button id="btn-toggle-links" title="Show/hide connections">🔗 Links</button>
+            <button id="btn-save-layout"  title="Reset layout to default">↺ Reset</button>
+
+            <!-- Filter dropdown -->
+            <div class="strip-dropdown" id="filter-dropdown">
+                <button class="strip-dropdown-toggle" title="Filter classes">Filter ▾</button>
+                <ul class="strip-dropdown-menu">
+                    <li class="filter-group-label">— Type —</li>
+                    <li><button class="filter-btn active" data-filter-type="all">All Classes</button></li>
+                    <li><button class="filter-btn" data-filter-type="ui">UI Classes</button></li>
+                    <li><button class="filter-btn" data-filter-type="backend">Backend Classes</button></li>
+                    <li><button class="filter-btn" data-filter-type="events">Has Events</button></li>
+                    <li class="filter-group-label">— Category —</li>
+                    <li><button class="filter-btn" data-filter-cat="Admin">Admin</button></li>
+                    <li><button class="filter-btn" data-filter-cat="Calendar">Calendar</button></li>
+                    <li><button class="filter-btn" data-filter-cat="Composite Apps">Composite Apps</button></li>
+                    <li><button class="filter-btn" data-filter-cat="Database">Database</button></li>
+                    <li><button class="filter-btn" data-filter-cat="Document">Document</button></li>
+                    <li><button class="filter-btn" data-filter-cat="DOM/XML">DOM / XML</button></li>
+                    <li><button class="filter-btn" data-filter-cat="DominoIQ">Domino IQ</button></li>
+                    <li><button class="filter-btn" data-filter-cat="DQL">DQL</button></li>
+                    <li><button class="filter-btn" data-filter-cat="File Operations">File Operations</button></li>
+                    <li><button class="filter-btn" data-filter-cat="GPS">GPS</button></li>
+                    <li><button class="filter-btn" data-filter-cat="HTTP">HTTP</button></li>
+                    <li><button class="filter-btn" data-filter-cat="Item">Item</button></li>
+                    <li><button class="filter-btn" data-filter-cat="JSON">JSON</button></li>
+                    <li><button class="filter-btn" data-filter-cat="Rich Text">Rich Text</button></li>
+                    <li><button class="filter-btn" data-filter-cat="Session">Session</button></li>
+                    <li><button class="filter-btn" data-filter-cat="UI">UI</button></li>
+                    <li><button class="filter-btn" data-filter-cat="View">View</button></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <ul id="class-list"></ul>
+    </div>
+
+    <!-- GRAPH AREA -->
+    <div id="paper-container"></div>
+
+    <!-- LINKS PANEL -->
+    <div id="links-panel">
+        <div id="links-panel-header">
+            <div id="links-panel-title">—</div>
+            <button id="links-panel-expand" title="Expand panel">⤢</button>
+        </div>
+        <div id="links-panel-body"></div>
+    </div>
+
+    <!-- ZOOM WIDGET -->
+    <div id="zoom-widget">
+        <div id="zoom-widget-header">Zoom</div>
+        <div id="zoom-control">
+            <button id="btn-zoom-out" title="Zoom Out">−</button>
+            <input type="text" id="zoom-level" value="100%" title="Zoom Level — type a value and press Enter">
+            <button id="btn-zoom-in" title="Zoom In">+</button>
+        </div>
+    </div>
+
+    <!-- ABOUT WIDGET -->
+    <div id="about-widget">
+        <button id="btn-about" title="About this project">ⓘ</button>
+    </div>
+
+    <!-- MAP LEGEND -->
+    <div id="map-legend">
+        <div id="legend-header">
+            <span>Legend</span>
+            <button id="legend-toggle" title="Collapse legend">▲</button>
+        </div>
+        <div id="legend-body">
+            <div class="legend-section">
+                <div class="legend-row">
+                    <span class="legend-node legend-backend">Aa</span>
+                    <span>Backend class</span>
+                </div>
+                <div class="legend-row">
+                    <span class="legend-node legend-ui">Aa</span>
+                    <span>UI class</span>
+                </div>
+
+            </div>
+            <div class="legend-divider"></div>
+            <div class="legend-section">
+                <div class="legend-row">
+                    <svg class="legend-arrow" viewBox="0 0 60 16" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="2" y1="8" x2="50" y2="8" stroke="#aaa" stroke-width="1.5"/>
+                        <polygon points="50,4 58,8 50,12" fill="#aaa"/>
+                    </svg>
+                    <span>Source exposes a method or property that returns the target class</span>
+                </div>
+                <div class="legend-row legend-label-row">
+                    <span class="legend-label-pill">GetEntry()</span>
+                    <span>Hover a link to see the method name</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT MODAL -->
+    <div id="about-overlay"></div>
+    <div id="about-modal" role="dialog" aria-modal="true" aria-labelledby="about-title">
+        <button id="about-close" title="Close">&times;</button>
+
+        <div id="about-logo">
+            <img src="openntf_iconlogo_trans_200.png" alt="OpenNTF" />
+        </div>
+
+        <h2 id="about-title">LotusScript Class Map <span style="font-size:14px;font-weight:normal;color:#666;">v0.9</span></h2>
+        <p class="about-tagline">An interactive reference for HCL Domino LotusScript classes,<br>published by <a href="https://openntf.org" target="_blank">OpenNTF</a>.</p>
+
+        <hr>
+
+        <h3>Copyright &amp; Attribution</h3>
+
+        <p>
+            <strong>Application</strong><br>
+            Copyright &copy; 2026 OpenNTF.<br>
+            Licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License 2.0</a>.
+        </p>
+
+        <p>
+            <strong>Class Reference Data</strong><br>
+            Sourced from the <a href="https://help.hcl-software.com/dom_designer/14.5.1/" target="_blank">HCL Domino Designer 14.5.1 documentation</a>.<br>
+            Copyright &copy; HCL Technologies Ltd. All rights reserved.
+        </p>
+
+        <p>
+            <strong>Third-Party Libraries</strong><br>
+            <a href="https://jointjs.com" target="_blank">JointJS</a> 3.7.7 — Mozilla Public License 2.0<br>
+            jQuery, Lodash, Backbone.js, Dagre, Graphlib — MIT License
+        </p>
+
+        <p>
+            <strong>Background Images</strong><br>
+            <a href="http://www.freepik.com" target="_blank">Designed by rawpixel.com / Freepik</a>
+        </p>
+
+        <hr>
+
+        <p class="about-footer">
+            <a href="https://openntf.org" target="_blank">openntf.org</a>
+        </p>
+    </div>
+
+    <!-- RETRO TOAST -->
+    <div id="retro-toast"></div>
+
+    <!-- THIRD-PARTY LIBS — loading order is important -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/backbone@1.4.1/backbone-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/graphlib/2.1.8/graphlib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.7.7/joint.js"></script>
+
+    <!-- ENGINE -->
+    <script src="js/engine.js"></script>
+
+    <!-- ABOUT MODAL BEHAVIOUR -->
+    <script>
+        const btnAbout     = document.getElementById('btn-about');
+        const aboutModal   = document.getElementById('about-modal');
+        const aboutOverlay = document.getElementById('about-overlay');
+        const aboutClose   = document.getElementById('about-close');
+
+        function openAbout()  { aboutModal.classList.add('open');    aboutOverlay.classList.add('open'); }
+        function closeAbout() { aboutModal.classList.remove('open'); aboutOverlay.classList.remove('open'); }
+
+        btnAbout.addEventListener('click', openAbout);
+        aboutClose.addEventListener('click', closeAbout);
+        aboutOverlay.addEventListener('click', closeAbout);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAbout(); });
+    </script>
+
+    <!-- LOAD DATASET -->
+    <script>
+        fetch("data/ls_classes.json")
+            .then(r => r.json())
+            .then(data => {
+                window.LS_CLASSES = data;
+                initializeClassMap();
+            })
+            .catch(e => console.error("ERROR loading LS_CLASSES:", e));
+    </script>
+
+    <!-- EASTER EGG — Konami code: ↑↑↓↓←→←→BA toggles retro poster mode -->
+    <script>
+        (function() {
+            const KONAMI = [
+                'ArrowUp','ArrowUp','ArrowDown','ArrowDown',
+                'ArrowLeft','ArrowRight','ArrowLeft','ArrowRight',
+                'b','a'
+            ];
+            let pos = 0;
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === KONAMI[pos]) {
+                    pos++;
+                    if (pos === KONAMI.length) {
+                        pos = 0;
+                        toggleRetroMode();
+                    }
+                } else {
+                    pos = (e.key === KONAMI[0]) ? 1 : 0;
+                }
+            });
+
+            function toggleRetroMode() {
+                const isRetro = document.body.classList.toggle('retro-mode');
+                showToast(isRetro
+                    ? '📼 Old School mode — Domino Objects for LotusScript/COM/OLE circa 1997'
+                    : '✨ Modern mode restored');
+
+                // Update JointJS paper background to match
+                if (window.paper) {
+                    paper.drawBackground({
+                        color: isRetro ? '#0052a3' : '#f8f9fa'
+                    });
+                }
+
+                // Re-style link colours via JointJS graph
+                if (window.graph) {
+                    graph.getLinks().forEach(link => {
+                        link.attr('line/stroke', isRetro ? '#ffffff' : '#aaa');
+                    });
+                }
+            }
+
+            // showToast() is defined globally in engine.js
+        })();
+    </script>
+
+</body>
+</html>

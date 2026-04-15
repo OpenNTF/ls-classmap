@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: ls-classmap
+Bnd-LastModified: 1776268750551
+Build-Jdk: 26
+Built-By: jesse
+Bundle-ManifestVersion: 2
+Bundle-Name: LotusScript Classmap
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: ls-classmap;singleton:=true
+Bundle-Version: 0.9.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Tool: Bnd-5.1.1.202006162103

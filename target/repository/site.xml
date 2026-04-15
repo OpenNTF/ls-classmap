@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<site>
+  <category-def label="LotusScript Classmap" name="LotusScript Classmap"/>
+  <feature id="ls-classmap.feature" url="features/ls-classmap.feature_0.9.0.20260415115910.jar" version="0.9.0.20260415115910">
+    <category name="LotusScript Classmap"/>
+  </feature>
+</site>
