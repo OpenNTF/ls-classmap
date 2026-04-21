@@ -69,7 +69,7 @@ npx serve .
 ## Copyright & Attribution
 
 **Application**
-Copyright © 2026 OpenNTF. Licensed under the [Apache License 2.0](LICENSE).
+Copyright © 2026 Contributors to the LotusScript Class Map project. Licensed under the [Apache License 2.0](LICENSE).
 
 **Class Reference Data**
 Sourced from the [HCL Domino Designer 14.5.1 documentation](https://help.hcl-software.com/dom_designer/14.5.1/).
